@@ -2,41 +2,24 @@ import React, {Component} from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import VIEWPORT_CONFIG from '../helpers/mapUtils/viewPortConfig';
+import { setMarkerData } from '../helpers/mapUtils/mapUtils';
 import './styles/map.css';
 
 export default class MapUber extends Component {
   state = {
-    viewport: {
-      width: '100vw',
-      height: '80vh',
-      latitude: 53.551086,
-      longitude: 9.993682,
-      zoom: 15,
-    }
+    viewport: VIEWPORT_CONFIG,
   };
 
   generateMarkers = (list, active) => {
-    return list.map((vehicle) => {
-      let latitude;
-      let longitude;
-      let icon;
-
-      if (active === 'taxis') {
-        latitude = vehicle.coordinate.latitude;
-        longitude = vehicle.coordinate.longitude;
-        icon = '/Images/taxi-icon.svg';
-      } else {
-        longitude = vehicle.coordinates[0];
-        latitude = vehicle.coordinates[1]; 
-        icon = '/Images/car2go-smart-car.png';
-      };
+    return list.map((vehicle, index) => {
+      const { latitude, longitude, icon } = setMarkerData(vehicle, active);
 
       return (
-        <Marker
-          latitude={latitude}
-          longitude={longitude}
-          >
+        <Marker key={latitude + index} latitude={latitude} longitude={longitude}>
           <img className='icon' src={icon} alt='taxi icon' />
+          <Popup latitude={latitude} longitude={longitude} closeButton={false}>
+          </Popup>
         </Marker>
       );
     });
