@@ -21,11 +21,19 @@ describe('renders properly', () => {
     const loading = findByTestAttr(wrapper, 'loading');
     expect(loading.length).toBe(1);
   });
-  test('unmounts Loading component and renders container when info has been fetched', () => {
+  test('unmounts Loading component when info has been fetched', () => {
     const wrapper = setup({ taxis: [{}, {}], cars: [{}, {}] });
-    const loading = findByTestAttr(wrapper, 'loading');
-    const container = findByTestAttr(wrapper, 'container');
+    const loading = findByTestAttr(wrapper, 'loading');    
     expect(loading.length).toBe(0);
-    expect(container.length).toBe(1);
+  });
+  test('renders map when info has been fetched', () => {
+    const wrapper = setup({ taxis: [{}, {}], cars: [{}, {}] });
+    const map = findByTestAttr(wrapper, 'map');
+    expect(map.length).toBe(1);
+  });
+  test('renders cards when info has been fetched', () => {
+    const wrapper = setup({ taxis: [{}, {}], cars: [{}, {}] });
+    const cards = findByTestAttr(wrapper, 'cards');
+    expect(cards.length).toBe(1);
   });
 });

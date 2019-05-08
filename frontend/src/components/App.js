@@ -4,6 +4,7 @@ import apiCall from '../API/api';
 
 import '../App.css';
 import Loading from './Loading';
+import Map from './Map';
 
 export default class App extends Component {
   state = {
@@ -14,8 +15,11 @@ export default class App extends Component {
 
   async componentDidMount() {
     const { taxis, cars } = await apiCall();
-    console.log(taxis);
-    console.log(cars);
+    this.setState({
+      cars,
+      taxis,
+      loading: false,
+    });
   };
 
 
@@ -26,7 +30,7 @@ export default class App extends Component {
       <div className='App' data-test='App'>
       {(loading)
         ? <Loading data-test='loading' />
-        : <p>loaded</p>
+        : <Map />
       }
       </div>
     );
