@@ -10,7 +10,8 @@
   height: 5vh;
   width: 30vw;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 25px;
 }
 
 .btn:first-of-type{

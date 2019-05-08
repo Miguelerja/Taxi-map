@@ -1,0 +1,9 @@
+::-webkit-scrollbar { 
+  width: 0; 
+}
+
+@media screen and (min-width: 768px){
+  ::-webkit-scrollbar { 
+    width: auto !important; 
+  }
+}

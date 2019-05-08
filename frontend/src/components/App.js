@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import apiCall from '../API/api';
 
-import '../App.css';
+import './styles/App.css';
 import Loading from './Loading';
 import Toggler from './Toggler';
 import Map from './Map';

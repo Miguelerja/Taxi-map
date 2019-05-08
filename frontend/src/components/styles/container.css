@@ -1,0 +1,6 @@
+.container{
+  display: flex;
+  flex-flow: row wrap;
+  width: 90vw;
+  margin: auto 5vw;
+}
