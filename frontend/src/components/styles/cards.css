@@ -1,3 +1,19 @@
+.danger{
+  color: red;
+}
+
+.success{
+  color: green;
+}
+
+.warning{
+  color: #FDC41E;
+}
+
+.info{
+  color: #107BB5;
+}
+
 .card{
   display: flex;
   flex-direction: column;

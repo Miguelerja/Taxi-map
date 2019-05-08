@@ -12,10 +12,10 @@ const listItems = (items, active) => {
         state,
       } = item;
 
-      return <TaxiCard id={id} state={state} />
+      return <TaxiCard key={id} id={id} state={state} />
     });
   } else {
-    return items.map((item) => {
+    return items.map((item, index) => {
       const {
         address,
         exterior,
@@ -26,6 +26,7 @@ const listItems = (items, active) => {
 
       return (
         <CarCard 
+          key={`${address}${index}`}
           address={address}
           exterior={exterior}
           interior={interior}
@@ -51,8 +52,8 @@ const Container = (props) => {
 };
 
 Container.propTypes = {
-  taxis: propTypes.string.isRequired,
-  cars: propTypes.string.isRequired,
+  taxis: propTypes.arrayOf(propTypes.object).isRequired,
+  cars: propTypes.arrayOf(propTypes.object).isRequired,
   active: propTypes.string.isRequired,
 };
 
