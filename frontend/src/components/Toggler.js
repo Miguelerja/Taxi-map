@@ -1,6 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
+import './styles/toggler.css';
+
 const Toggler = (props) => {
   const handleClick = (event) => {
     event.preventDefault();

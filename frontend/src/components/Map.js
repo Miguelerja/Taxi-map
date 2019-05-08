@@ -20,7 +20,7 @@ export default class Map extends Component {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [9.993682, 53.551086],
-      zoom: 9,
+      zoom: 15,
     };
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWplciIsImEiOiJjanNwdHJreTkweHRrM3lyMnF5eG03YmYxIn0.myLECOiJBHCAM3rF00_vXw';

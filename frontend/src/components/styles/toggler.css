@@ -1,0 +1,23 @@
+.toggler{
+  display: flex;
+  justify-content: center;
+  height: 5vh;
+  margin: 2.5vh auto;
+}
+
+.btn{
+  border: none;
+  height: 5vh;
+  width: 30vw;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.btn:first-of-type{
+  background-color: #FDC41E;
+}
+
+.btn:last-of-type{
+  margin-left: 5vw;
+  background-color: #107BB5;
+}
