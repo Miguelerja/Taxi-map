@@ -3,8 +3,8 @@ import propTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import { setTaxiMarkers, setCarMarkers } from '../helpers/mapUtils';
 import './styles/map.css';
-
 
 export default class Map extends Component {
   geolocation = new mapboxgl.GeolocateControl({
@@ -30,29 +30,10 @@ export default class Map extends Component {
     this.map.on('load', () => {
       this.map.addControl(this.geolocation);
 
-      const popUpConfig = {
-        closeButton: false,
-        className: 'popup',
-      };
-
-      
       if (active === 'taxis') {
-        taxis.forEach((taxi) => {
-          const popUp = new mapboxgl.Popup(popUpConfig)
-            .setText(taxi.id);
-
-          new mapboxgl.Marker({ 'color': 'red' })
-            .setLngLat([taxi.coordinate.longitude, taxi.coordinate.latitude])
-            .setPopup(popUp)
-            .addTo(this.map);
-
-        });
+        setTaxiMarkers(taxis, this.map);
       } else {
-        cars.forEach((car) => {
-          new mapboxgl.Marker({ 'color': 'green' })
-            .setLngLat(car.coordinates)
-            .addTo(this.map);
-        });
+        setCarMarkers(cars, this.map);
       };
     });
   };
