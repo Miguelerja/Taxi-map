@@ -4,7 +4,9 @@ import apiCall from '../API/api';
 
 import '../App.css';
 import Loading from './Loading';
+import Toggler from './Toggler';
 import Map from './Map';
+import Container from './Container';
 
 export default class App extends Component {
   state = {
@@ -30,7 +32,12 @@ export default class App extends Component {
       <div className='App' data-test='App'>
       {(loading)
         ? <Loading data-test='loading' />
-        : <Map />
+        : 
+        <>
+          <Toggler />
+          <Map />
+          <Container />
+        </>
       }
       </div>
     );

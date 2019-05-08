@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -32,3 +33,8 @@ export default class Map extends Component {
     return <div id='map' className='map' data-test='map'></div>;
   };
 };
+
+Map.propTypes = {
+  taxis: propTypes.arrayOf(propTypes.object),
+  cars: propTypes.arrayOf(propTypes.object),
+}
