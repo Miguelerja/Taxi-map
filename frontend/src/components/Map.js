@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import './styles/map.css';
+
 
 export default class Map extends Component {
   geolocation = new mapboxgl.GeolocateControl({
@@ -13,10 +15,11 @@ export default class Map extends Component {
   });
 
   componentDidMount() {
+    const { taxis, cars, active } = this.props;
     const mapConfig = {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [2.1905327, 41.397765199999995],
+      center: [9.993682, 53.551086],
       zoom: 9,
     };
 
@@ -25,7 +28,32 @@ export default class Map extends Component {
     this.map = new mapboxgl.Map(mapConfig);
 
     this.map.on('load', () => {
-      this.map.addControl(this.geolocation)
+      this.map.addControl(this.geolocation);
+
+      const popUpConfig = {
+        closeButton: false,
+        className: 'popup',
+      };
+
+      
+      if (active === 'taxis') {
+        taxis.forEach((taxi) => {
+          const popUp = new mapboxgl.Popup(popUpConfig)
+            .setText(taxi.id);
+
+          new mapboxgl.Marker({ 'color': 'red' })
+            .setLngLat([taxi.coordinate.longitude, taxi.coordinate.latitude])
+            .setPopup(popUp)
+            .addTo(this.map);
+
+        });
+      } else {
+        cars.forEach((car) => {
+          new mapboxgl.Marker({ 'color': 'green' })
+            .setLngLat(car.coordinates)
+            .addTo(this.map);
+        });
+      };
     });
   };
 
