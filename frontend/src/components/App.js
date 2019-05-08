@@ -6,6 +6,7 @@ import './styles/App.css';
 import Loading from './Loading';
 import Toggler from './Toggler';
 import Map from './Map';
+import { TaxiFilter } from './Filter';
 import Container from './Container';
 
 export default class App extends Component {
@@ -29,6 +30,10 @@ export default class App extends Component {
     this.setState({ active: list });
   };
 
+  taxiAvailabilityFilter = () => {
+
+  };
+
   render() {
     const { taxis, cars, loading, active } = this.state;
 
@@ -44,6 +49,7 @@ export default class App extends Component {
             cars={cars}
             active={active}
           />
+          <TaxiFilter availabilityFilter={this.taxiAvailabilityFilter} />
           <Container 
             taxis={taxis}
             cars={cars}

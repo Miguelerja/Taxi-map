@@ -1,5 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
-const TaxiFilter = (props) => {
+export class TaxiFilter extends Component {
+  state = {
+    checked: false
+  };
 
+  handleFilter = () => {
+    this.setState({
+      checked: !this.state.checked,
+    });
+    this.props.availabilityFilter();
+  };
+
+  render() {
+    const { checked } = this.state;
+
+    return (
+      <div className='filter taxi-filter'>
+        <h3>Show only available Taxis</h3>
+        <button 
+          className='checkbox' 
+          onClick={this.handleFilter}>
+          {(checked) ? 'X' : null}
+        </button>
+      </div>
+    );
+  };
+};
+
+TaxiFilter.propTypes = {
+  availabilityFilter: propTypes.func.isRequired,
 };
