@@ -13,6 +13,7 @@ export default class App extends Component {
     loading: true,
     taxis: null,
     cars: null,
+    active: 'taxis',
   };
 
   async componentDidMount() {
@@ -24,9 +25,12 @@ export default class App extends Component {
     });
   };
 
+  toggleActiveList = (list) => {
+    this.setState({ active: list });
+  };
 
   render() {
-    const { taxis, cars, loading } = this.state;
+    const { taxis, cars, loading, active } = this.state;
 
     return (
       <div className='App' data-test='App'>
@@ -34,8 +38,9 @@ export default class App extends Component {
         ? <Loading data-test='loading' />
         : 
         <>
-          <Toggler />
-          <Map />
+          <Toggler handleToggle={this.toggleActiveList} />
+          <Map
+          />
           <Container />
         </>
       }
