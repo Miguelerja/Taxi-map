@@ -7,6 +7,10 @@ import { setTaxiMarkers, setCarMarkers } from '../helpers/mapUtils';
 import './styles/map.css';
 
 export default class Map extends Component {
+  state = {
+    toggle: false,
+  };
+
   geolocation = new mapboxgl.GeolocateControl({
     positionOptions: {
       enableHighAccuracy: true
@@ -29,6 +33,7 @@ export default class Map extends Component {
 
     this.map.on('load', () => {
       this.map.addControl(this.geolocation);
+      console.log('map load')
 
       if (active === 'taxis') {
         setTaxiMarkers(taxis, this.map);
@@ -38,12 +43,19 @@ export default class Map extends Component {
     });
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.active !== prevProps.active) {
+      this.setState({toggle: !this.state.toggle});
+    };
+  };
+
   render() {
     return <div id='map' className='map' data-test='map'></div>;
   };
 };
 
 Map.propTypes = {
-  taxis: propTypes.arrayOf(propTypes.object),
-  cars: propTypes.arrayOf(propTypes.object),
+  taxis: propTypes.arrayOf(propTypes.object).isRequired,
+  cars: propTypes.arrayOf(propTypes.object).isRequired,
+  active: propTypes.string.isRequired,
 }

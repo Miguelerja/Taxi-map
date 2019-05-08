@@ -21,22 +21,22 @@ export function determineFuelLevel (fuel) {
   switch (fuel) {
     case fuel > 90:
       return {
-        description: 'Full tank',
+        description: 'Full',
         styling: 'success',
       };
     case fuel > 50:
       return {
-        description: 'Tank level ok',
+        description: 'High',
         styling: 'info',
       };
     case fuel === 50:
       return {
-        description: 'Tank halved',
+        description: 'Half',
         styling: 'warning',
       };
     default:
       return {
-        description: 'Tank level low',
+        description: 'Low',
         styling: 'danger', 
       };
   };

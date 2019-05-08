@@ -1,3 +1,5 @@
+/* Utils */
+
 .danger{
   color: red;
 }
@@ -14,24 +16,71 @@
   color: #107BB5;
 }
 
+/* Layout */
+
 .card{
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #F3F3F3;
   width: 90%;
   margin: 2% 4%;
 }
 
-.logo{
-  width: 50px;
-  margin-top: 0.5rem;
+.card-mytaxi{
+  border: 1px solid #FDC41E;
 }
+
+.card-car2go{
+  border: 1px solid #107BB5;
+}
+
+.logo{
+  height: 15%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.7rem;
+} 
+
+.card h4 {
+  margin-bottom: 0;
+  margin-top: 0.2rem;
+}
+
+.card-mytaxi h4{
+  color: #FDC41E;
+}
+
+.card-car2go h4{
+  color: #107BB5;
+}
+
+.vehicle-info{
+  text-align: center;
+  width: 80%;
+  height: 50%;
+  margin: 0 auto;
+}
+
+.license{
+  margin-top: 0.5;
+  margin-bottom: 0.2rem;
+}
+
+.status-container{
+  display: flex;
+  align-items: center;
+}
+
+.status-container h4{
+  width: 90%;
+  margin-right: 5%;
+}
+
 
 @media(min-width: 768px){
   .card{
     width: 45%;
     margin: 1% 2.25%;
+    max-height: 30vh;
   }
 }
 

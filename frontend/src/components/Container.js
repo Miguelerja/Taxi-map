@@ -17,7 +17,6 @@ const listItems = (items, active) => {
   } else {
     return items.map((item, index) => {
       const {
-        address,
         exterior,
         interior,
         name,
@@ -26,8 +25,7 @@ const listItems = (items, active) => {
 
       return (
         <CarCard 
-          key={`${address}${index}`}
-          address={address}
+          key={index}
           exterior={exterior}
           interior={interior}
           name={name}

@@ -5,7 +5,7 @@ export function setTaxiMarkers (taxis, map) {
     const popUp = new mapboxgl.Popup({ closeButton: false, className: 'popUp' })
       .setText(taxi.id);
 
-    new mapboxgl.Marker({ 'color': 'red' })
+    new mapboxgl.Marker({ 'color': '#FDC41E' })
       .setLngLat([taxi.coordinate.longitude, taxi.coordinate.latitude])
       .setPopup(popUp)
       .addTo(map);
@@ -14,7 +14,7 @@ export function setTaxiMarkers (taxis, map) {
 
 export function setCarMarkers (cars, map) {
   cars.forEach((car) => {
-    new mapboxgl.Marker({ 'color': 'green' })
+    new mapboxgl.Marker({ 'color': '#107BB5' })
       .setLngLat(car.coordinates)
       .addTo(map);
   });

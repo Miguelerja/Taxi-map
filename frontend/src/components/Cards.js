@@ -11,9 +11,11 @@ export function TaxiCard (props) {
   } = props;
 
   return (
-    <div className='card'>
+    <div className='card card-mytaxi'>
       <img className='logo' src='/Images/mytaxi-logo-pos.png' alt='myTaxi Logo' />
+      <h4>Taxi ID</h4>
       <p>{id}</p>
+      <h4>Status</h4>
       <p className={(state === 'ACTIVE') ? 'success' : 'danger' }>{state}</p>
     </div>
   );
@@ -26,7 +28,6 @@ TaxiCard.propTypes = {
 
 export function CarCard (props) {
   const { 
-    address,
     exterior,
     interior,
     name,
@@ -37,18 +38,24 @@ export function CarCard (props) {
   const conservationStatus = determineState(interior, exterior);
 
   return (
-    <div className='card'>
+    <div className='card card-car2go'>
       <img className='logo' src='/Images/car2go-logo.png' alt='car2go logo' />
-      <p>{name}</p>
-      <p>{address}</p>
-      <p className={conservationStatus.styling}>{conservationStatus.description}</p>
-      <p className={fueltStatus.styling}>{fueltStatus.description}</p>
+        <p className='license'>{name}</p>
+      <div className='vehicle-status'>
+        <div className='status-container'>
+          <h4>Car Status</h4>
+          <p className={conservationStatus.styling}>{conservationStatus.description}</p>
+        </div>
+        <div className='status-container'>
+          <h4>Fuel level</h4>
+          <p className={fueltStatus.styling}>{fueltStatus.description}</p>
+        </div>
+      </div>
     </div>
   );
 };
 
 CarCard.propTypes = {
-  address: propTypes.string.isRequired,
   exterior: propTypes.string.isRequired,
   interior: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
