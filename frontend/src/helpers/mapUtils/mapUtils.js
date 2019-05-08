@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marker, Popup } from 'react-map-gl';
+import { Marker } from 'react-map-gl';
 
 function setMarkerData(vehicle, active) {
   if (active === 'taxis') {
@@ -24,8 +24,6 @@ export default function generateMarkers(list, active) {
     return (
       <Marker key={latitude + index} latitude={latitude} longitude={longitude}>
         <img className='icon' src={icon} alt='taxi icon' />
-        <Popup latitude={latitude} longitude={longitude} closeButton={false}>
-        </Popup>
       </Marker>
     );
   });

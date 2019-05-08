@@ -38,9 +38,12 @@ const listItems = (items, active) => {
 
 const Container = (props) => {
   const { active, taxis, cars } = props;
+  const className = (active === 'taxis')
+    ? 'container background-myTaxy' 
+    : 'container background-car2go';
 
   return (
-    <div className='container'>
+    <div className={className}>
       {(active === 'taxis')
         ? listItems(taxis, active)
         : listItems(cars, active)

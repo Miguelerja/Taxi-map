@@ -1,6 +1,13 @@
 .container{
   display: flex;
   flex-flow: row wrap;
-  width: 90vw;
-  margin: auto 5vw;
+  width: 100vw;
+}
+
+.background-myTaxy{
+  background-color: rgba(253, 196, 30, 0.8);
+}
+
+.background-car2go{
+  background-color: rgba(16, 123, 181, 0.8);
 }

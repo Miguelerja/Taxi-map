@@ -1,5 +1,5 @@
 const VIEWPORT_CONFIG = {
-  width: '100vw',
+  width: '100%',
   height: '80vh',
   latitude: 53.551086,
   longitude: 9.993682,
