@@ -39,7 +39,7 @@ export default class App extends Component {
         : 
         <>
           <Toggler handleToggle={this.toggleActiveList} />
-          <Map 
+          <Map
             taxis={taxis}
             cars={cars}
             active={active}

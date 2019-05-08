@@ -1,61 +1,62 @@
-import React, { Component } from 'react';
-import propTypes from 'prop-types';
-import mapboxgl from 'mapbox-gl';
+import React, {Component} from 'react';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import { setTaxiMarkers, setCarMarkers } from '../helpers/mapUtils';
 import './styles/map.css';
 
-export default class Map extends Component {
+export default class MapUber extends Component {
   state = {
-    toggle: false,
+    viewport: {
+      width: '100vw',
+      height: '80vh',
+      latitude: 53.551086,
+      longitude: 9.993682,
+      zoom: 15,
+    }
   };
 
-  geolocation = new mapboxgl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true
-    },
-    trackUserLocation: true
-  });
-
-  componentDidMount() {
-    const { taxis, cars, active } = this.props;
-    const mapConfig = {
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [9.993682, 53.551086],
-      zoom: 15,
-    };
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYWplciIsImEiOiJjanNwdHJreTkweHRrM3lyMnF5eG03YmYxIn0.myLECOiJBHCAM3rF00_vXw';
-  
-    this.map = new mapboxgl.Map(mapConfig);
-
-    this.map.on('load', () => {
-      this.map.addControl(this.geolocation);
-      console.log('map load')
+  generateMarkers = (list, active) => {
+    return list.map((vehicle) => {
+      let latitude;
+      let longitude;
+      let icon;
 
       if (active === 'taxis') {
-        setTaxiMarkers(taxis, this.map);
+        latitude = vehicle.coordinate.latitude;
+        longitude = vehicle.coordinate.longitude;
+        icon = '/Images/taxi-icon.svg';
       } else {
-        setCarMarkers(cars, this.map);
+        longitude = vehicle.coordinates[0];
+        latitude = vehicle.coordinates[1]; 
+        icon = '/Images/car2go-smart-car.png';
       };
+
+      return (
+        <Marker
+          latitude={latitude}
+          longitude={longitude}
+          >
+          <img className='icon' src={icon} alt='taxi icon' />
+        </Marker>
+      );
     });
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props.active !== prevProps.active) {
-      this.setState({toggle: !this.state.toggle});
-    };
-  };
-
   render() {
-    return <div id='map' className='map' data-test='map'></div>;
+    const { taxis, cars, active } = this.props;
+
+    return (
+      <ReactMapGL
+        mapboxApiAccessToken={'pk.eyJ1IjoiYWplciIsImEiOiJjanNwdHJreTkweHRrM3lyMnF5eG03YmYxIn0.myLECOiJBHCAM3rF00_vXw'}
+        mapStyle='mapbox://styles/mapbox/streets-v11'
+        {...this.state.viewport}
+        onViewportChange={(viewport) => this.setState({viewport})}
+        >
+        {(active === 'taxis')
+          ? this.generateMarkers(taxis, active)
+          : this.generateMarkers(cars, active)
+        }
+      </ReactMapGL>
+    );
   };
 };
-
-Map.propTypes = {
-  taxis: propTypes.arrayOf(propTypes.object).isRequired,
-  cars: propTypes.arrayOf(propTypes.object).isRequired,
-  active: propTypes.string.isRequired,
-}
