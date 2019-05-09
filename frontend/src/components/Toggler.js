@@ -1,12 +1,13 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { setActiveData } from '../actions';
 import './styles/toggler.css';
 
 const Toggler = (props) => {
   const handleClick = (event) => {
     event.preventDefault();
-    props.handleToggle(event.target.name);
+    props.setActiveData(event.target.name);
   };
 
   return (
@@ -25,8 +26,8 @@ const Toggler = (props) => {
   );
 };
 
-Toggler.propTypes = {
-  handleToggle: propTypes.func.isRequired,
-}
+const mapStateToProps = (props) => {
+  console.log(props);
+};
 
-export default Toggler;
+export default connect(mapStateToProps, { setActiveData })(Toggler);

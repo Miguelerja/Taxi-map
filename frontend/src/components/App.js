@@ -10,17 +10,8 @@ import { TaxiFilter } from './Filter';
 import Container from './Container';
 
 class App extends Component {
-  state = {
-    active: 'taxis',
-  };
-
-
   componentDidMount() {
     this.props.getData();
-  };
-
-  toggleActiveList = (list) => {
-    this.setState({ active: list });
   };
 
   taxiAvailabilityFilter = () => {
@@ -28,8 +19,7 @@ class App extends Component {
   };
 
   render() {
-    const { active } = this.state;
-    const { loading, taxis, cars } = this.props;
+    const { active, loading, taxis, cars } = this.props;
 
     return (
       <div className='App' data-test='App'>
@@ -56,10 +46,11 @@ class App extends Component {
   };
 };
 
-const mapStateToProps = ({ initialData }) => {
+const mapStateToProps = ({ initialData, toggleData }) => {
   return {
     taxis: initialData.taxis,
     cars: initialData.cars,
+    active: toggleData.payload,
     loading: initialData.taxis === undefined,
   };
 };
