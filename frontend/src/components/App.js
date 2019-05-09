@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import apiCall from '../API/api';
-
+import { getData } from '../actions';
 import './styles/App.css';
 import Loading from './Loading';
 import Toggler from './Toggler';
@@ -9,21 +9,15 @@ import Map from './Map';
 import { TaxiFilter } from './Filter';
 import Container from './Container';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     loading: true,
-    taxis: null,
-    cars: null,
     active: 'taxis',
   };
 
-  async componentDidMount() {
-    const { taxis, cars } = await apiCall();
-    this.setState({
-      cars,
-      taxis,
-      loading: false,
-    });
+
+  componentDidMount() {
+    this.props.getData();
   };
 
   toggleActiveList = (list) => {
@@ -35,7 +29,8 @@ export default class App extends Component {
   };
 
   render() {
-    const { taxis, cars, loading, active } = this.state;
+    const { loading, active } = this.state;
+    const { taxis, cars } = this.props;
 
     return (
       <div className='App' data-test='App'>
@@ -62,3 +57,11 @@ export default class App extends Component {
   };
 };
 
+const mapStateToProps = ({ initialData }) => {
+  return {
+    taxis: initialData.taxis,
+    cars: initialData.cars,
+  };
+};
+
+export default connect(mapStateToProps, { getData })(App);

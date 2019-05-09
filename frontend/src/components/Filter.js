@@ -6,11 +6,11 @@ export class TaxiFilter extends Component {
     checked: false
   };
 
-  handleFilter = () => {
-    this.setState({
+  handleFilter = async () => {
+    await this.setState({
       checked: !this.state.checked,
     });
-    this.props.availabilityFilter();
+    this.props.availabilityFilter(this.state.checked);
   };
 
   render() {
