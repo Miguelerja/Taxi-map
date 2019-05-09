@@ -4,6 +4,8 @@ export const actionTypes = {
   GET_DATA: 'GET_DATA',
   SET_ACTIVE_DATA: 'SET_ACTIVE_DATA',
   FILTER_TAXIS: 'FILTER_TAXIS',
+  FILTER_CARS_BY_FUEL: 'FILTER_CARS_BY_FUEL',
+  FILTER_CARS_BY_STATE: 'FILTER_CARS_BY_STATE',
 };
 
 export const getData = () => {
@@ -33,6 +35,24 @@ export const filterTaxis = (filtered) => {
     return dispatch({
       type: actionTypes.FILTER_TAXIS,
       payload: filtered,
+    });
+  };
+};
+
+export const filterCarsByFuel = (fuel) => {
+  return function(dispatch) {
+    return dispatch({
+      type: actionTypes.FILTER_CARS_BY_FUEL,
+      payload: fuel,
+    });
+  };
+};
+
+export const filterCarsByState = (state) => {
+  return function(dispatch) {
+    return dispatch({
+      type: actionTypes.FILTER_CARS_BY_STATE,
+      payload: state,
     });
   };
 };

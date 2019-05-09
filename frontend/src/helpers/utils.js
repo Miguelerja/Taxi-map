@@ -18,26 +18,25 @@ export function determineState (interior, exterior) {
 };
 
 export function determineFuelLevel (fuel) {
-  switch (fuel) {
-    case fuel > 90:
-      return {
-        description: 'Full',
-        styling: 'success',
-      };
-    case fuel > 50:
+  if (fuel > 90) {
+    return {
+      description: 'Full',
+      styling: 'success',
+    }; 
+  } else if (fuel > 50) {
       return {
         description: 'High',
         styling: 'info',
       };
-    case fuel === 50:
+    } else if (fuel === 50) {
       return {
         description: 'Half',
         styling: 'warning',
       };
-    default:
+    } else {
       return {
         description: 'Low',
         styling: 'danger', 
       };
-  };
+    };
 };
