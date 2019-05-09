@@ -6,7 +6,7 @@ import './styles/App.css';
 import Loading from './Loading';
 import Toggler from './Toggler';
 import Map from './Map';
-import { TaxiFilter } from './Filter';
+import TaxiFilter from './TaxiFilter';
 import Container from './Container';
 
 class App extends Component {
@@ -14,12 +14,17 @@ class App extends Component {
     this.props.getData();
   };
 
-  taxiAvailabilityFilter = () => {
-
-  };
-
   render() {
-    const { active, loading, taxis, cars } = this.props;
+    const { active, loading, taxis, cars, taxisFiltered } = this.props;
+
+    const filterTaxis = (taxisFiltered, taxis) => {
+      if(taxisFiltered) {
+        return taxis.filter((taxi) => taxi.state === 'ACTIVE');
+      };
+
+      return taxis;
+    };
+
 
     return (
       <div className='App' data-test='App'>
@@ -27,15 +32,15 @@ class App extends Component {
         ? <Loading data-test='loading' />
         : 
         <>
-          <Toggler handleToggle={this.toggleActiveList} />
+          <Toggler />
           <Map
-            taxis={taxis}
+            taxis={filterTaxis(taxisFiltered, taxis)}
             cars={cars}
             active={active}
           />
           <TaxiFilter availabilityFilter={this.taxiAvailabilityFilter} />
           <Container 
-            taxis={taxis}
+            taxis={filterTaxis(taxisFiltered, taxis)}
             cars={cars}
             active={active}
           />
@@ -46,11 +51,12 @@ class App extends Component {
   };
 };
 
-const mapStateToProps = ({ initialData, toggleData }) => {
+const mapStateToProps = ({ initialData, toggleData, filterTaxis }) => {
   return {
     taxis: initialData.taxis,
     cars: initialData.cars,
-    active: toggleData.payload,
+    active: toggleData,
+    taxisFiltered: filterTaxis,
     loading: initialData.taxis === undefined,
   };
 };

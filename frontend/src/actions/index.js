@@ -27,3 +27,12 @@ export const setActiveData = (dataSet) => {
     });
   };
 };
+
+export const filterTaxis = (filtered) => {
+  return function(dispatch) {
+    return dispatch({
+      type: actionTypes.FILTER_TAXIS,
+      payload: filtered,
+    });
+  };
+};

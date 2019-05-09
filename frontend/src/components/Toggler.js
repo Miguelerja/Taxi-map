@@ -26,8 +26,4 @@ const Toggler = (props) => {
   );
 };
 
-const mapStateToProps = (props) => {
-  console.log(props);
-};
-
-export default connect(mapStateToProps, { setActiveData })(Toggler);
+export default connect(null, { setActiveData })(Toggler);

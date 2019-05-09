@@ -1,8 +1,8 @@
 import { actionTypes } from '../actions';
 
-export default (state='taxis', action) => {
+export default (state=false, action) => {
   switch(action.type){
-    case actionTypes.SET_ACTIVE_DATA:
+    case actionTypes.FILTER_TAXIS:
       return action.payload;
     default:
       return state;
