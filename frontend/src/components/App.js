@@ -11,7 +11,6 @@ import Container from './Container';
 
 class App extends Component {
   state = {
-    loading: true,
     active: 'taxis',
   };
 
@@ -29,8 +28,8 @@ class App extends Component {
   };
 
   render() {
-    const { loading, active } = this.state;
-    const { taxis, cars } = this.props;
+    const { active } = this.state;
+    const { loading, taxis, cars } = this.props;
 
     return (
       <div className='App' data-test='App'>
@@ -61,6 +60,7 @@ const mapStateToProps = ({ initialData }) => {
   return {
     taxis: initialData.taxis,
     cars: initialData.cars,
+    loading: initialData.taxis === undefined,
   };
 };
 
