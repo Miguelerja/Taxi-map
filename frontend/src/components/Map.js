@@ -6,7 +6,7 @@ import VIEWPORT_CONFIG from '../helpers/mapUtils/viewPortConfig';
 import generateMarkers from '../helpers/mapUtils/mapUtils';
 import './styles/map.css';
 
-export default class MapUber extends Component {
+export default class Map extends Component {
   state = {
     viewport: VIEWPORT_CONFIG,
   };

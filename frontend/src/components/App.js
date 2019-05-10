@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { getData } from '../actions';
 import './styles/App.css';
-import { determineState, determineFuelLevel } from '../helpers/utils';
+import { filterTaxis, filterCars } from '../helpers/utils';
 import Loading from './Loading';
 import Toggler from './Toggler';
 import Map from './Map';
@@ -17,41 +17,15 @@ class App extends Component {
   };
 
   render() {
-    const { active, loading, taxis, cars, onlyActiveTaxis, filterByFuelLevel, filterByState } = this.props;
-
-    const filterTaxis = (onlyActiveTaxis, taxis) => {
-      if(onlyActiveTaxis) {
-        return taxis.filter((taxi) => taxi.state === 'ACTIVE');
-      };
-
-      return taxis;
-    };
-
-    const filterCars = (filterByFuelLevel, filterByState, cars) => {
-      if(filterByFuelLevel && filterByState) {
-        return cars.filter((car) => {
-          const { description: fuel } = determineFuelLevel(car.fuel);
-          const { description: state } = determineState(car.interior, car.exterior);
-          return fuel !== 'Low' && state === 'Excellent';
-        });
-      };
-
-      if(filterByFuelLevel && !filterByState) {
-        return cars.filter((car) => {
-          const { description: fuel } = determineFuelLevel(car.fuel);
-          return fuel !== 'Low';
-        });
-      };
-
-      if(filterByState && !filterByFuelLevel) {
-        return cars.filter((car) => {
-          const { description: state } = determineState(car.interior, car.exterior);
-          return state === 'Excellent';
-        });
-      };
-
-      return cars;
-    };
+    const { 
+      active, 
+      loading, 
+      taxis, 
+      cars, 
+      onlyActiveTaxis, 
+      filterByFuelLevel, 
+      filterByState 
+    } = this.props;
 
     return (
       <div className='App' data-test='App'>

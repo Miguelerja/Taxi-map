@@ -40,3 +40,37 @@ export function determineFuelLevel (fuel) {
       };
     };
 };
+
+export function filterTaxis (onlyActiveTaxis, taxis) {
+  if(onlyActiveTaxis) {
+    return taxis.filter((taxi) => taxi.state === 'ACTIVE');
+  };
+
+  return taxis;
+};
+
+export function filterCars (filterByFuelLevel, filterByState, cars) {
+  if(filterByFuelLevel && filterByState) {
+    return cars.filter((car) => {
+      const { description: fuel } = determineFuelLevel(car.fuel);
+      const { description: state } = determineState(car.interior, car.exterior);
+      return fuel !== 'Low' && state === 'Excellent';
+    });
+  };
+
+  if(filterByFuelLevel && !filterByState) {
+    return cars.filter((car) => {
+      const { description: fuel } = determineFuelLevel(car.fuel);
+      return fuel !== 'Low';
+    });
+  };
+
+  if(filterByState && !filterByFuelLevel) {
+    return cars.filter((car) => {
+      const { description: state } = determineState(car.interior, car.exterior);
+      return state === 'Excellent';
+    });
+  };
+
+  return cars;
+};

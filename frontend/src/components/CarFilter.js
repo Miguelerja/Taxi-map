@@ -15,14 +15,18 @@ const CarFilter = (props) => {
 
   return (
     <div className='car-filter'>
-      <h3>Good overall state only</h3>
-      <button 
-        className={generateClassName(stateFilter)} 
-        onClick={() => filterCarsByState(!stateFilter)} />
-      <h3>At least half charged only</h3>
-      <button 
-        className={generateClassName(fuelFilter)} 
-        onClick={() => filterCarsByFuel(!fuelFilter)} />
+      <div className='sub-container'>
+        <h3>Good overall state only</h3>
+        <button 
+          className={generateClassName(stateFilter)} 
+          onClick={() => filterCarsByState(!stateFilter)} />
+      </div>
+      <div className='sub-container'>
+        <h3>At least half charged only</h3>
+        <button 
+          className={generateClassName(fuelFilter)} 
+          onClick={() => filterCarsByFuel(!fuelFilter)} />
+      </div>
     </div>
   );
 };
