@@ -11,17 +11,17 @@ const Toggler = (props) => {
   };
 
   return (
-    <div className='toggler' data-test='toggler'>
+    <div className='toggler'>
       <button 
         onClick={handleClick}
         className='btn' 
         name='taxis'
-        data-test='taxis'>MyTaxi</button>
+        >MyTaxi</button>
       <button 
         onClick={handleClick}
         className='btn' 
         name='cars'
-        data-test='cars'>Car2Go</button>
+        >Car2Go</button>
     </div>
   );
 };

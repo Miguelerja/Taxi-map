@@ -28,9 +28,9 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div className='App' data-test='App'>
+      <div className='App'>
       {(loading)
-        ? <Loading data-test='loading' />
+        ? <Loading />
         : 
         <>
           <Toggler />

@@ -25,7 +25,7 @@ class Loading extends Component {
   render() {
     const { text } = this.state;
     return (
-      <p data-test='loading' className='loading'>{text}</p>
+      <p className='loading'>{text}</p>
     );
   };
 };
